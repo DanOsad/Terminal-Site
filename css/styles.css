@@ -1,0 +1,170 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*{
+    box-sizing: border-box;
+  }
+
+/* ------------------------------------------ */
+
+:root {
+    --light-yellow: rgba(174, 137, 32, 0.8);
+    --light-green: rgba(147, 183, 125, 0.8);
+    --light-gray: rgba(141, 136, 124, 0.8);
+    --light-blue: rgba(134, 184, 194, 0.8);
+    --bright-green: rgba(68, 143, 73, 0.8);
+}
+
+body {
+    font-size: 62.5%;
+    font-family: 'Source Code Pro', monospace;
+    background: #000000;
+    /* display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around; */
+    /* margin: .5rem; */
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    /* flex-direction: row; */
+    align-items: stretch;
+    justify-content: space-around;
+    /* height: 100%; */
+    position: relative;
+}
+
+#terminal-window {
+    margin: .5rem;
+    border: 1px solid var(--bright-green);
+    border-radius: .25rem;
+    position: absolute;
+    height: 98%;
+    width: 99%;
+}
+
+/* h1 {
+    color: var(--light-yellow);
+} */
+
+.terminalLine {
+    /*  */
+}
+
+p {
+    font-size: 1.2rem;
+    display: inline;
+}
+
+.banner {
+    font-size: 1.2rem;
+    color: var(--light-green);
+    display: block;
+}
+
+.help {
+    color: var(--light-blue);
+    text-shadow: 0 0 5px var(--light-blue)
+}
+
+.helpLine {
+    margin-top: 1rem;
+}
+
+.userName {
+    color:var(--light-yellow);
+}
+
+.at {
+    color: var(--light-gray);
+}
+
+.address {
+    color: var(--light-green);
+}
+
+.sudo {
+    color: var(--light-gray)
+}
+
+.terminalLine input {
+    font-size: 1rem;
+    background: black;
+    color: var(--light-yellow);
+    caret-color: var(--light-gray);
+    border: none;
+    /* caret-shape: block; */
+    animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+input:focus {
+    outline: none;
+}
+
+.cursor {
+    font-size: 12px;
+    color: #73ABAD;
+    background-color: #73ABAD;
+    position: relative;
+    opacity: 1;
+    height: 1.5em;
+    width: 10px;
+    max-width: 10px;
+    transform: translateY(4px);
+    overflow: hidden;
+    text-indent: -5px;
+    display: inline-block;
+    text-decoration: blink;
+    animation: blinker 1s linear infinite;
+}

@@ -16,11 +16,11 @@ If you have any feedback, please reach out to us at dan@osadtsuk.com
 
 # Roadmap
 
-UI
+##UI
 - Blinking cursor
 - ASCI art banner
 - Color change when correctly spelled command
-Functionality
+##Functionality
 - Store past inputs
 - 'Help' - list of commands
 - About, Projects, Clear commands
