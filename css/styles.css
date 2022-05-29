@@ -145,7 +145,7 @@ p {
 }
 
 .oldInput {
-    color:var(--light-yellow);
+    color:var(--light-gray);
 }
 
 .terminalLine input {
