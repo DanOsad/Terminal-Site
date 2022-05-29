@@ -82,6 +82,19 @@ const newTerminalLine = () => {
     document.getElementById('terminal-window').appendChild(div)
 }
 
+const oldTerminalLine = () => {
+    let div = document.createElement('div')
+    div.setAttribute('class', 'terminalLine')
+    div.innerHTML = `
+                    <p class="userName">user</p>
+                    <p class="at">@</p>
+                    <p class="address">term.osadtsuk.com</p>
+                    <p class="sudo">:$ ~</p>
+                    <input type="text" name="terminalInput" autofocus>
+                    `
+    document.getElementById('terminal-window').appendChild(div)
+}
+
 document.querySelector('#button').addEventListener('click', newTerminalLine)
 
 // function for listening for enter key press
@@ -97,7 +110,18 @@ window.addEventListener("keydown", function(event) {
 function replaceLine() {
     // get whats written in input
     let text = document.querySelector('input').value
-    console.log(text)
     // replace line with text-only version
+    let oldLine = document.querySelector('.terminalLine')
+    oldLine.remove()
+    let div = document.createElement('div')
+    div.setAttribute('class', 'oldTerminalLine')
+    div.innerHTML = `
+                    <p class="userName">user</p>
+                    <p class="at">@</p>
+                    <p class="address">term.osadtsuk.com</p>
+                    <p class="sudo">:$ ~</p>
+                    <p class="oldInput">${text}</p>
+                    `
+    document.getElementById('terminal-window').appendChild(div)
 }
 

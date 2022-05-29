@@ -98,7 +98,11 @@ main {
 } */
 
 .terminalLine {
-    /*  */
+    font-size: 1rem;
+}
+
+.oldTerminalLine {
+    font-size: 1rem;
 }
 
 p {
@@ -136,6 +140,10 @@ p {
 
 .sudo {
     color: var(--light-gray)
+}
+
+.oldInput {
+    color:var(--light-yellow);
 }
 
 .terminalLine input {
