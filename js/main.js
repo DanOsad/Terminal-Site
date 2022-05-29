@@ -71,15 +71,14 @@ const newTerminalLine = () => {
     let div = document.createElement('div')
     div.setAttribute('class', 'terminalLine')
     div.innerHTML = `
-                    <div class="terminalLine">
                         <p class="userName">user</p>
                         <p class="at">@</p>
                         <p class="address">term.osadtsuk.com</p>
                         <p class="sudo">:$ ~</p>
-                        <input type="text" name="terminalInput" autofocus>
-                    </div>
+                        <input type="text" name="terminalInput" id="input" autofocus>
                     `
     document.getElementById('terminal-window').appendChild(div)
+    document.querySelector('#input').focus()
 }
 
 const oldTerminalLine = () => {
@@ -99,14 +98,15 @@ document.querySelector('#button').addEventListener('click', newTerminalLine)
 
 // function for listening for enter key press
 window.addEventListener("keydown", function(event) {
-    if ( event.code === 'Enter' ) {
+    if ( event.code === 'Enter' && document.querySelector('input').value !== '') {
         console.log('Enter key pressed...')
         replaceLine()
+        typeWriter()
         newTerminalLine()
     }
 })
 
-// make previous terminal lines non-interactive
+/* MAKE OLD LINES INACTIVE */
 function replaceLine() {
     // get whats written in input
     let text = document.querySelector('input').value
@@ -123,5 +123,19 @@ function replaceLine() {
                     <p class="oldInput">${text}</p>
                     `
     document.getElementById('terminal-window').appendChild(div)
+}
+
+/* TYPING EFFECT */
+const line = 'Lorem ipsum typing effect!'; /* The text */
+let i = 0
+let speed = 50 /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+    
+    if (i < line.length) {
+        document.getElementById("content").innerHTML += line.charAt(i)
+        i++
+        setTimeout(typeWriter, speed)
+    }
 }
 
