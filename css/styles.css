@@ -85,6 +85,7 @@ main {
 
 #terminal-window {
     margin: .5rem;
+    padding: 1rem;
     border: 1px solid var(--bright-green);
     border-radius: .25rem;
     position: absolute;
@@ -101,8 +102,9 @@ main {
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: inline;
+    padding-left: -.5rem;
 }
 
 .banner {

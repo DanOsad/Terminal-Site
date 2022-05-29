@@ -76,7 +76,6 @@ const newTerminalLine = () => {
                         <p class="at">@</p>
                         <p class="address">term.osadtsuk.com</p>
                         <p class="sudo">:$ ~</p>
-                        <label for="terminalInput">xxxxxxx</label>
                         <input type="text" name="terminalInput" autofocus>
                     </div>
                     `
@@ -89,5 +88,16 @@ document.querySelector('#button').addEventListener('click', newTerminalLine)
 window.addEventListener("keydown", function(event) {
     if ( event.code === 'Enter' ) {
         console.log('Enter key pressed...')
+        replaceLine()
+        newTerminalLine()
     }
 })
+
+// make previous terminal lines non-interactive
+function replaceLine() {
+    // get whats written in input
+    let text = document.querySelector('input').value
+    console.log(text)
+    // replace line with text-only version
+}
+
