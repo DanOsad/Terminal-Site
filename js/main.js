@@ -101,8 +101,9 @@ window.addEventListener("keydown", function(event) {
     if ( event.code === 'Enter' && document.querySelector('input').value !== '') {
         console.log('Enter key pressed...')
         replaceLine()
-        typeWriter()
+        // typeWriter()
         newTerminalLine()
+        changeInputColor()
     }
 })
 
@@ -139,3 +140,14 @@ function typeWriter() {
     }
 }
 
+/* CHANGE INPUT COLOR */
+function changeInputColor(){
+    const input = document.getElementById('input');
+    input.addEventListener('input', event => {
+        if (input.value === 'help') {
+            input.style.color = 'red'
+        } else {
+            input.style.color = ''
+        }
+    })
+}
