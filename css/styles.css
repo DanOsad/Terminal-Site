@@ -65,13 +65,13 @@ body {
     font-size: 62.5%;
     font-family: 'Source Code Pro', monospace;
     background: #000000;
-    /* display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: space-around; */
-    /* margin: .5rem; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
+    justify-content: center;
+    margin: .5rem;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
 }
 
 main {
@@ -86,11 +86,11 @@ main {
 #terminal-window {
     margin: .5rem;
     padding: 1rem;
-    border: 1px solid var(--bright-green);
-    border-radius: .25rem;
-    position: absolute;
-    height: 98%;
-    width: 99%;
+    /* border: 1px solid var(--bright-green); */
+    /* border-radius: .25rem; */
+    /* position: absolute; */
+    /* height: 98%; */
+    /* width: 99%; */
 }
 
 /* h1 {
@@ -111,6 +111,7 @@ p {
     font-size: 1rem;
     display: inline;
     padding-left: -.5rem;
+    animation: typing 0.5s steps(30, end)
 }
 
 .banner {
@@ -151,6 +152,7 @@ p {
 .terminalLine input {
     font-family: 'Source Code Pro', monospace;
     font-size: 1rem;
+    line-height: 1rem;
     background: black;
     color: var(--light-yellow);
     caret-color: var(--light-green);

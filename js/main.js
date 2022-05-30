@@ -94,8 +94,6 @@ const oldTerminalLine = () => {
     document.getElementById('terminal-window').appendChild(div)
 }
 
-document.querySelector('#button').addEventListener('click', newTerminalLine)
-
 // function for listening for enter key press
 window.addEventListener("keydown", function(event) {
     if ( event.code === 'Enter' && document.querySelector('input').value !== '') {
