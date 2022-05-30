@@ -69,6 +69,7 @@ function input( userInput ) {
 
 const newTerminalLine = () => {
     let div = document.createElement('div')
+    div.setAttribute('id', 'terminalLine')
     div.setAttribute('class', 'terminalLine')
     div.innerHTML = `
                         <p class="userName">user</p>
@@ -81,26 +82,27 @@ const newTerminalLine = () => {
     document.querySelector('#input').focus()
 }
 
-const oldTerminalLine = () => {
-    let div = document.createElement('div')
-    div.setAttribute('class', 'terminalLine')
-    div.innerHTML = `
-                    <p class="userName">user</p>
-                    <p class="at">@</p>
-                    <p class="address">term.osadtsuk.com</p>
-                    <p class="sudo">:$ ~</p>
-                    <input type="text" name="terminalInput" autofocus>
-                    `
-    document.getElementById('terminal-window').appendChild(div)
-}
+// const oldTerminalLine = () => {
+//     let div = document.createElement('div')
+//     div.setAttribute('class', 'terminalLine')
+//     div.innerHTML = `
+//                     <p class="userName">user</p>
+//                     <p class="at">@</p>
+//                     <p class="address">term.osadtsuk.com</p>
+//                     <p class="sudo">:$ ~</p>
+//                     <input type="text" name="terminalInput" autofocus>
+//                     `
+//     document.getElementById('terminal-window').appendChild(div)
+// }
 
 // function for listening for enter key press
 window.addEventListener("keydown", function(event) {
-    if ( event.code === 'Enter' && document.querySelector('input').value !== '') {
+    if ( event.code === 'Enter' ){ //&& document.querySelector('input').value !== '' ) {
         console.log('Enter key pressed...')
         inputList()
         replaceLine()
         // typeWriter()
+        respond()
         newTerminalLine()
         changeInputColor()
     }
@@ -156,5 +158,22 @@ let commanded = []
 function inputList() {
     let input = document.getElementById('input').value
     commanded.push(input)
-    console.log(commanded)
+    // console.log(commanded)
+}
+
+/* COMMAND NOT FOUND */
+function commandNotFound() {
+    let div = document.createElement('div')
+    div.setAttribute('class', 'responseLine')
+    div.innerHTML = '<p>Command not found. For a list of commands, type <span class="help">help</span></p>'
+    document.getElementById('terminal-window').appendChild(div)
+}
+
+/* RESPONDS TO HELP ONLY (FOR NOW) */
+function respond() {
+    let input = commanded[commanded.length-1]
+    console.log(input)
+    if (input !== 'help') {
+        commandNotFound()
+    } 
 }

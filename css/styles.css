@@ -59,6 +59,8 @@ table {
     --light-gray: rgba(141, 136, 124, 0.8);
     --light-blue: rgba(134, 184, 194, 0.8);
     --bright-green: rgba(68, 143, 73, 0.8);
+    --light-purple: rgba(175, 116, 209, 0.8);
+
 }
 
 body {
@@ -162,6 +164,10 @@ p {
 
 input:focus {
     outline: none;
+}
+
+.responseLine p {
+    color: var(--light-purple)
 }
 
 #content {
