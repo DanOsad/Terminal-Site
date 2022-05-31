@@ -44,8 +44,6 @@ class Help extends Command {
     }
 }
 
-let commands = ['about', 'projects', 'contact', 'clear', 'help']
-
 function input( userInput ) {
     let input = userInput.toLowerCase()
     switch ( commands.includes(input) ) {
@@ -82,29 +80,15 @@ const newTerminalLine = () => {
     document.querySelector('#input').focus()
 }
 
-// const oldTerminalLine = () => {
-//     let div = document.createElement('div')
-//     div.setAttribute('class', 'terminalLine')
-//     div.innerHTML = `
-//                     <p class="userName">user</p>
-//                     <p class="at">@</p>
-//                     <p class="address">term.osadtsuk.com</p>
-//                     <p class="sudo">:$ ~</p>
-//                     <input type="text" name="terminalInput" autofocus>
-//                     `
-//     document.getElementById('terminal-window').appendChild(div)
-// }
-
 // function for listening for enter key press
 window.addEventListener("keydown", function(event) {
+    changeInputColor()
     if ( event.code === 'Enter' ){ //&& document.querySelector('input').value !== '' ) {
-        console.log('Enter key pressed...')
         inputList()
         replaceLine()
         // typeWriter()
         respond()
         newTerminalLine()
-        changeInputColor()
     }
 })
 
@@ -141,12 +125,15 @@ function typeWriter() {
     }
 }
 
+/* COMMAND LIST */
+let commands = ['about', 'projects', 'contact', 'clear', 'help']
+
 /* CHANGE INPUT COLOR */
 function changeInputColor(){
     const input = document.getElementById('input')
     input.addEventListener('input', event => {
-        if (input.value === 'help') {
-            input.style.color = 'red'
+        if (commands.includes(input.value.toLowerCase())) {
+            input.style.color = 'var(--light-red)'
         } else {
             input.style.color = ''
         }
@@ -172,7 +159,6 @@ function commandNotFound() {
 /* RESPONDS TO HELP ONLY (FOR NOW) */
 function respond() {
     let input = commanded[commanded.length-1]
-    console.log(input)
     if (input !== 'help') {
         commandNotFound()
     } 

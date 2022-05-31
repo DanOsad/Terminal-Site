@@ -60,7 +60,7 @@ table {
     --light-blue: rgba(134, 184, 194, 0.8);
     --bright-green: rgba(68, 143, 73, 0.8);
     --light-purple: rgba(175, 116, 209, 0.8);
-
+    --light-red: rgba(226, 75, 75, 0.8);
 }
 
 body {
@@ -69,44 +69,25 @@ body {
     background: #000000;
     display: flex;
     flex-direction: column;
-    /* align-items: stretch; */
     justify-content: center;
     margin: .5rem;
-    height: 100%;
-    /* width: 100%; */
-}
-
-main {
-    display: flex;
-    /* flex-direction: row; */
-    align-items: stretch;
-    justify-content: space-around;
-    /* height: 100%; */
-    position: relative;
 }
 
 #terminal-window {
+    flex-grow: 1;
     margin: .5rem;
     padding: 1rem;
-    /* border: 1px solid var(--bright-green); */
-    /* border-radius: .25rem; */
-    /* position: absolute; */
-    /* height: 98%; */
-    /* width: 99%; */
 }
-
-/* h1 {
-    color: var(--light-yellow);
-} */
-
-/* .terminalLine {
-    font-size: 1rem;
-} */
 
 .terminalLine, 
 .oldTerminalLine {
     font-size: 1rem;
     margin-bottom: .25rem;
+}
+
+.responseLine {
+    font-size: 1rem;
+    margin: .75rem 0 .5rem 2rem;
 }
 
 p {
@@ -167,9 +148,6 @@ input:focus {
 }
 
 .responseLine p {
-    color: var(--light-purple)
-}
-
-#content {
-    color: var(--light-blue)
+    color: var(--light-purple);
+    display: block;
 }
