@@ -6,12 +6,6 @@ class Command {
     begin() {
         this.newTerminalLine()
     }
-    output() {
-        // todo
-    }
-    insertDOM(text) {
-        document.querySelector('#terminal-window').innerText = text
-    }
     replaceLine() {
         let text = document.querySelector('input').value
         let oldLine = document.querySelector('.terminalLine')
@@ -63,9 +57,26 @@ class Command {
     }
     respond() {
         let input = this.pastCommands[this.pastCommands.length-1]
-        if (input !== 'help') {
+        if (input == 'clear') {
+            this.clear()
+        } else if (input !== 'help') {
             this.commandNotFound()
-        } 
+        }
+    }
+    clear() {
+        let parentId = 'terminal-window'
+        let childName = 'oldTerminalLine'
+        let secondChildName = 'responseLine'
+        let childNodesToRemove = document.getElementById(parentId).getElementsByClassName(childName)
+        for(let i=childNodesToRemove.length-1; i >= 0; i--){
+            let childNode = childNodesToRemove[i]
+            childNode.parentNode.removeChild(childNode)
+        }
+        let secondChildNodesToRemove = document.getElementById(parentId).getElementsByClassName(secondChildName)
+        for(let i=secondChildNodesToRemove.length-1; i >= 0; i--){
+            let childNode = secondChildNodesToRemove[i]
+            childNode.parentNode.removeChild(childNode)
+        }
     }
 }
 
@@ -75,7 +86,6 @@ const runApp = () => {
     window.addEventListener("keydown", function(event) {
         line.changeInputColor()
         if (event.code === 'Enter') {
-            let line = new Command()
             line.pushCommandToInputList()
             line.replaceLine()
             // typeWriter()
