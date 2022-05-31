@@ -55,5 +55,32 @@ class Command {
             }
         })
     }
+    commandNotFound() {
+        let div = document.createElement('div')
+        div.setAttribute('class', 'responseLine')
+        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="help">help</span></p>'
+        document.getElementById('terminal-window').appendChild(div)
+    }
+    respond() {
+        let input = this.pastCommands[this.pastCommands.length-1]
+        if (input !== 'help') {
+            this.commandNotFound()
+        } 
+    }
 }
 
+window.addEventListener("keydown", function(event) {
+    let line = new Command()
+    line.begin()
+    line.changeInputColor()
+    if (event.code === 'Enter') {
+        let line = new Command()
+        line.pushCommandToInputList()
+        line.replaceLine()
+        // inputList()
+        // replaceLine()
+        // typeWriter()
+        // respond()
+        // newTerminalLine()
+    }
+})
