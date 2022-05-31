@@ -69,18 +69,20 @@ class Command {
     }
 }
 
-window.addEventListener("keydown", function(event) {
+const runApp = () => {
     let line = new Command()
     line.begin()
-    line.changeInputColor()
-    if (event.code === 'Enter') {
-        let line = new Command()
-        line.pushCommandToInputList()
-        line.replaceLine()
-        // inputList()
-        // replaceLine()
-        // typeWriter()
-        // respond()
-        // newTerminalLine()
-    }
-})
+    window.addEventListener("keydown", function(event) {
+        line.changeInputColor()
+        if (event.code === 'Enter') {
+            let line = new Command()
+            line.pushCommandToInputList()
+            line.replaceLine()
+            // typeWriter()
+            line.respond()
+            line.newTerminalLine()
+        }
+    })
+}
+
+runApp()
