@@ -1,6 +1,6 @@
 class Command {
     constructor () {
-        this.commands = ['about', 'projects', 'contact', 'clear', 'help']
+        this.commands = ['about', 'projects', 'contact', 'clear', 'help', 'date']
         this.pastCommands = []
     }
     begin() {
@@ -49,12 +49,6 @@ class Command {
             }
         })
     }
-    commandNotFound() {
-        let div = document.createElement('div')
-        div.setAttribute('class', 'responseLine')
-        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="glow">help</span></p>'
-        document.getElementById('terminal-window').appendChild(div)
-    }
     respond() {
         let input = this.pastCommands[this.pastCommands.length-1].toLowerCase()
         if (input == 'clear') {
@@ -67,20 +61,20 @@ class Command {
             this.contact()
         } else if (input == 'about') {
             this.about()
+        } else if (input == 'date') {
+            this.date()
         } else {
             this.commandNotFound()
         }
     }
+    commandNotFound() {
+        let div = document.createElement('div')
+        div.setAttribute('class', 'responseLine')
+        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="glow">help</span></p>'
+        document.getElementById('terminal-window').appendChild(div)
+    }
     help() {
-        const help = [
-            'about',
-            'projects',
-            'contact',
-            'clear',
-            'help',
-            'secret',
-        ]
-        for (let command of help) {
+        for (let command of this.commands) {
             let div = document.createElement('div')
             div.setAttribute('class', 'responseLine')
             div.innerHTML = `<p><span class="glow">${command}</span></p>`
@@ -112,7 +106,7 @@ class Command {
         for (const project in projects) {
             let div = document.createElement('div')
             div.setAttribute('class', 'responseLine')
-            div.innerHTML = `<p>${project}&nbsp;<a href="${projects[project]}"><span class="glow">On Github</span></a></p>`
+            div.innerHTML = `<p>${project}&nbsp;<a href="${projects[project]}"><span class="glow">on github</span></a></p>`
             document.getElementById('terminal-window').appendChild(div)
         }
     }
@@ -124,10 +118,10 @@ class Command {
     }
     about() {
         const about = [
-            "<p>i'm Dan Osadtsuk, a full stack developer based in Tel Aviv, Israel.</p>",
-            "<p>building useful products and tools is my passion.</p>",
-            "<p>in my spare time, my dog and I climb, camp, cycle, and swim together.</p>",
-            '<p>check me out on <a href="https://github.com/DanOsad/"><span class="glow">Github</span></a>.</p>',
+            "<p>i'm Dan Osadtsuk, a full stack developer based in Tel Aviv</p>",
+            "<p>building useful products and tools is my passion</p>",
+            "<p>in my spare time, my dog and i climb, camp, cycle, and swim together</p>",
+            '<p>check me out on <a href="https://github.com/DanOsad/"><span class="glow">github</span></a></p>',
         ]
         for (let line of about) {
             let div = document.createElement('div')
@@ -135,6 +129,13 @@ class Command {
             div.innerHTML = line
             document.getElementById('terminal-window').appendChild(div)
         }
+    }
+    date() {
+        let date = new Date()
+        let div = document.createElement('div')
+        div.setAttribute('class', 'responseLine')
+        div.innerHTML = `<p>${date}</p>`
+        document.getElementById('terminal-window').appendChild(div)
     }
 }
 
