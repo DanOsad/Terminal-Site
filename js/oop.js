@@ -52,15 +52,39 @@ class Command {
     commandNotFound() {
         let div = document.createElement('div')
         div.setAttribute('class', 'responseLine')
-        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="help">help</span></p>'
+        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="glow">help</span></p>'
         document.getElementById('terminal-window').appendChild(div)
     }
     respond() {
-        let input = this.pastCommands[this.pastCommands.length-1]
+        let input = this.pastCommands[this.pastCommands.length-1].toLowerCase()
         if (input == 'clear') {
             this.clear()
-        } else if (input !== 'help') {
+        } else if (input == 'projects') {
+            this.projects()
+        } else if (input == 'help') {
+            this.help()
+        } else if (input == 'contact') {
+            this.contact()
+        } else if (input == 'about') {
+            this.about()
+        } else {
             this.commandNotFound()
+        }
+    }
+    help() {
+        const help = [
+            'about',
+            'projects',
+            'contact',
+            'clear',
+            'help',
+            'secret',
+        ]
+        for (let command of help) {
+            let div = document.createElement('div')
+            div.setAttribute('class', 'responseLine')
+            div.innerHTML = `<p><span class="glow">${command}</span></p>`
+            document.getElementById('terminal-window').appendChild(div)
         }
     }
     clear() {
@@ -76,6 +100,40 @@ class Command {
         for(let i=secondChildNodesToRemove.length-1; i >= 0; i--){
             let childNode = secondChildNodesToRemove[i]
             childNode.parentNode.removeChild(childNode)
+        }
+    }
+    projects() {
+        const projects = {
+            "tictactoe oop" : "https://github.com/DanOsad/TicTacToe",
+            "quote generator" : "https://github.com/DanOsad/Quote",
+            "bash site oop" : "https://github.com/DanOsad/Terminal-Site",
+            "localstorage crud" : "https://github.com/DanOsad/LocalUser",
+        }
+        for (const project in projects) {
+            let div = document.createElement('div')
+            div.setAttribute('class', 'responseLine')
+            div.innerHTML = `<p>${project}&nbsp;<a href="${projects[project]}"><span class="glow">On Github</span></a></p>`
+            document.getElementById('terminal-window').appendChild(div)
+        }
+    }
+    contact() {
+        let div = document.createElement('div')
+        div.setAttribute('class', 'responseLine')
+        div.innerHTML = `<p><a href="mailto:dan@osadtsuk.com"><span class="glow">email me</span></a></p>`
+        document.getElementById('terminal-window').appendChild(div)
+    }
+    about() {
+        const about = [
+            "<p>i'm Dan Osadtsuk, a full stack developer based in Tel Aviv, Israel.</p>",
+            "<p>building useful products and tools is my passion.</p>",
+            "<p>in my spare time, my dog and I climb, camp, cycle, and swim together.</p>",
+            '<p>check me out on <a href="https://github.com/DanOsad/"><span class="glow">Github</span></a>.</p>',
+        ]
+        for (let line of about) {
+            let div = document.createElement('div')
+            div.setAttribute('class', 'responseLine')
+            div.innerHTML = line
+            document.getElementById('terminal-window').appendChild(div)
         }
     }
 }

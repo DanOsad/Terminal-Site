@@ -73,6 +73,10 @@ body {
     margin: .5rem;
 }
 
+a {
+    text-decoration: none;
+}
+
 #terminal-window {
     flex-grow: 1;
     margin: .5rem;
@@ -93,7 +97,7 @@ body {
 p {
     font-size: 1rem;
     display: inline;
-    padding-left: -.5rem;
+    /* padding-left: -.5rem; */
     animation: typing 0.5s steps(30, end)
 }
 
@@ -103,7 +107,7 @@ p {
     display: block;
 }
 
-.help {
+.glow {
     color: var(--light-blue);
     text-shadow: 0 0 5px var(--light-blue)
 }
@@ -114,6 +118,8 @@ p {
 
 .userName {
     color:var(--light-yellow);
+    margin: 0;
+    padding: 0;
 }
 
 .at {
