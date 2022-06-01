@@ -1,6 +1,14 @@
 class Command {
     constructor () {
-        this.commands = ['about', 'projects', 'contact', 'clear', 'help', 'date']
+        this.commands = [
+            'about', 
+            'projects', 
+            'contact', 
+            'date',
+            'echo',
+            'help', 
+            'clear', 
+        ]
         this.pastCommands = []
     }
     begin() {
@@ -63,22 +71,18 @@ class Command {
             this.about()
         } else if (input == 'date') {
             this.date()
+        } else if (input.split(' ')[0] == 'echo') {
+            this.echo()
         } else {
             this.commandNotFound()
         }
     }
     commandNotFound() {
-        let div = document.createElement('div')
-        div.setAttribute('class', 'responseLine')
-        div.innerHTML = '<p>Command not found. For a list of commands, type <span class="glow">help</span></p>'
-        document.getElementById('terminal-window').appendChild(div)
+        this.buildResponseLine('Command not found. For a list of commands, type <span class="glow">help</span>')
     }
     help() {
         for (let command of this.commands) {
-            let div = document.createElement('div')
-            div.setAttribute('class', 'responseLine')
-            div.innerHTML = `<p><span class="glow">${command}</span></p>`
-            document.getElementById('terminal-window').appendChild(div)
+            this.buildResponseLine(`<span class="glow">${command}</span>`)
         }
     }
     clear() {
@@ -104,37 +108,37 @@ class Command {
             "localstorage crud" : "https://github.com/DanOsad/LocalUser",
         }
         for (const project in projects) {
-            let div = document.createElement('div')
-            div.setAttribute('class', 'responseLine')
-            div.innerHTML = `<p>${project}&nbsp;<a href="${projects[project]}"><span class="glow">on github</span></a></p>`
-            document.getElementById('terminal-window').appendChild(div)
+            this.buildResponseLine(`${project}&nbsp;<a href="${projects[project]}"><span class="glow">on github</span></a>`)
         }
     }
     contact() {
-        let div = document.createElement('div')
-        div.setAttribute('class', 'responseLine')
-        div.innerHTML = `<p><a href="mailto:dan@osadtsuk.com"><span class="glow">email me</span></a></p>`
-        document.getElementById('terminal-window').appendChild(div)
+        this.buildResponseLine('<a href="mailto:dan@osadtsuk.com"><span class="glow">email me</span></a>')
     }
     about() {
         const about = [
-            "<p>i'm Dan Osadtsuk, a full stack developer based in Tel Aviv</p>",
-            "<p>building useful products and tools is my passion</p>",
-            "<p>in my spare time, my dog and i climb, camp, cycle, and swim together</p>",
-            '<p>check me out on <a href="https://github.com/DanOsad/"><span class="glow">github</span></a></p>',
+            "i'm Dan Osadtsuk, a full stack developer based in Tel Aviv",
+            "building useful products and tools is my passion",
+            "in my spare time, my dog and i climb, camp, cycle, and swim together",
+            'check me out on <a href="https://github.com/DanOsad/"><span class="glow">github</span></a>',
         ]
         for (let line of about) {
-            let div = document.createElement('div')
-            div.setAttribute('class', 'responseLine')
-            div.innerHTML = line
-            document.getElementById('terminal-window').appendChild(div)
+            this.buildResponseLine(`${line}`)
         }
     }
     date() {
         let date = new Date()
+        this.buildResponseLine(date)
+    }
+    echo() {
+        let input = this.pastCommands[this.pastCommands.length-1].split('echo')[1]
+        if (input !== 'undefined') {
+            this.buildResponseLine(input)
+        }
+    }
+    buildResponseLine(html) {
         let div = document.createElement('div')
         div.setAttribute('class', 'responseLine')
-        div.innerHTML = `<p>${date}</p>`
+        div.innerHTML = `<p>${html}</p>`
         document.getElementById('terminal-window').appendChild(div)
     }
 }
